@@ -7,7 +7,7 @@ var findMedianSortedArrays = function (nums1, nums2) {
     }
     i = 0;
     j = 0;
-    merged = [];
+    const merged = [];
     arr1Finished = false;
     arr2Finished = false;
 
@@ -37,21 +37,22 @@ var findMedianSortedArrays = function (nums1, nums2) {
     } else {
         remainder = nums1.slice(i);
     }
-    merged = merged.concat(remainder);
+    let mergedFinal = merged.concat(remainder);
 
     // console.log(`merged = ${merged}`);
     // console.log(arr3);
 
     //determine median
     if (totalLength % 2 === 0) {  //if even, return average of two innermost elements
-        medianUpper = merged[totalLength / 2];
-        medianLower = merged[medianUpper - 1];
+        medianUpper = mergedFinal[totalLength / 2];
+        medianLower = mergedFinal[medianUpper - 1];
         return (medianLower + medianUpper) / 2;
     } else {
-        return [Math.floor(totalLength / 2)];  //if odd, return value in innermost element
+        medianIndex = Math.floor(totalLength / 2);  //if odd, return value in innermost element
+        return mergedFinal[medianIndex];
     }
 };
 
-arr1 = [2, 3, 7, 8, 13, 15, 16];
+arr1 = [2, 3, 7, 8, 13, 15];
 arr2 = [1, 4, 6, 10];
 console.log(findMedianSortedArrays(arr1, arr2));
